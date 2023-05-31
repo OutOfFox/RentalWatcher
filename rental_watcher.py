@@ -129,8 +129,13 @@ if __name__ == '__main__':
     pb = Pushbullet(config[CONFIG_PB_KEY])
     seen_storage = ListingStorage(in_script_dir(SEEN_LISTING_FILE))
 
+    # We hold the world ransom for... 1 million dollars
+    price_limit = 1000000
+    if CONFIG_MAXP_KEY in config:
+        price_limit = config[CONFIG_MAXP_KEY]
+
     all_listings = scrape_castanet_rentals(config[CONFIG_CAS_KEY], 5) + scrape_kijiji_rentals(config[CONFIG_KIJ_KEY], 2)
-    filtered_listings = [listing_dict for listing_dict in all_listings if (int(listing_dict['price']) < 2000) and (not seen_storage.check(listing_dict['url']))]
+    filtered_listings = [listing_dict for listing_dict in all_listings if (int(listing_dict['price']) < price_limit) and (not seen_storage.check(listing_dict['url']))]
 
     # Stop the spam when running for the first time.
     first_run = len(seen_storage.hashed_strings) == 0
