@@ -11,8 +11,8 @@ config.json requires 3 keys, and includes an optional price limit.
 ```
 {
   "Pushbullet Key": "",
-  "Kijiji URL":     "https://www.kijiji.ca/<your local listing>",
-  "Castanet URL":   ""
+  "Kijiji URL":     "https://www.kijiji.ca/b-apartments-condos/<your local listing>",
+  "Castanet URL":   "https://classifieds.castanet.net/cat/rentals/"
 
   "Max Price": 0 (optional, default 1,000,000)
 }
